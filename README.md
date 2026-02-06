@@ -1,127 +1,43 @@
-🔹 Analisis 1 – Atribut & Object
+# 📦 TechMaster – Sistem Manajemen Inventaris Elektronik (OOP Python)
 
-Pertanyaan:
-Apa yang terjadi jika hero1.hp = 500 setelah objek dibuat?
+Proyek ini merupakan tugas pemrograman Python yang menerapkan **4 Pilar OOP**  
+(Abstraction, Encapsulation, Inheritance, dan Polymorphism) untuk membuat sistem
+manajemen inventaris sederhana pada toko elektronik bernama **TechMaster**.
 
-Jawaban:
-Nilai HP pada objek hero1 akan berubah menjadi 500.
-Ini menunjukkan bahwa atribut public bisa diubah langsung dari luar class.
+## 🎯 Tujuan Proyek
+Membangun backend sederhana untuk:
+- Mengelola stok barang elektronik
+- Menghitung harga + pajak secara otomatis
+- Menampilkan detail transaksi
 
-📌 Kesimpulan:
-Tanpa enkapsulasi, data mudah dimodifikasi secara bebas dan berisiko merusak logika game.
+## 🧱 Konsep OOP yang Digunakan
 
-🔹 Analisis 2 – Interaksi Antar Objek
+1. **Abstraction**  
+   Menggunakan Abstract Class `BarangElektronik` dengan method:
+   - `tampilkan_detail()`
+   - `hitung_harga_total(jumlah)`
 
-Pertanyaan:
-Mengapa parameter lawan pada method serang harus berupa objek, bukan string?
+2. **Encapsulation**  
+   Atribut sensitif seperti `__stok` dan `__harga_dasar` dibuat private dan
+   hanya bisa diakses melalui method.
 
-Jawaban:
-Karena kita butuh memanggil method diserang() milik objek lawan.
-Jika hanya string nama, maka tidak ada data HP atau method yang bisa diproses.
+3. **Inheritance**  
+   Class `Laptop` dan `Smartphone` mewarisi `BarangElektronik`.
 
-📌 Kesimpulan:
-Objek menyimpan data + perilaku, bukan sekadar teks.
-<img width="1920" height="1008" alt="Screenshot 2026-02-04 090918" src="https://github.com/user-attachments/assets/957d7aed-2a7f-4ead-81ce-0c3fb152e266" />
+4. **Polymorphism**  
+   Method yang sama (`tampilkan_detail`, `hitung_harga_total`) memiliki perilaku
+   berbeda pada setiap class anak.
 
+## 🛒 Skenario Program
+1. Admin membuat data produk Laptop dan Smartphone.  
+2. Admin menambah stok (stok negatif ditolak).  
+3. User membeli 2 Laptop dan 1 Smartphone.  
+4. Program menampilkan struk transaksi dan total tagihan.
 
-🔹 Analisis 3 – Fungsi super()
+## ▶️ Cara Menjalankan Program
 
-Pertanyaan:
-Apa error jika super().__init__() dihapus di class Mage?
+1. Pastikan Python sudah terinstall.
+2. Jalankan perintah berikut di terminal:
 
-Jawaban:
-Error yang muncul:
-
-AttributeError: 'Mage' object has no attribute 'name'
-
-
-Penjelasan:
-Karena constructor milik Hero tidak dijalankan, atribut name, hp, dan attack_power tidak dibuat di Mage.
-
-📌 Peran super():
-
-Menghubungkan data dari class Induk ke Anak
-
-Memastikan Mage tetap punya atribut Hero
-<img width="1920" height="1008" alt="Screenshot 2026-02-04 091122" src="https://github.com/user-attachments/assets/203d8dbe-f5d2-4106-bf6c-1e7d9780c424" />
-
-
-🔹 Analisis 4 – Enkapsulasi (Getter & Setter)
-1️⃣ Percobaan Akses Paksa
-hero1._Hero__hp
-
-Hasil:
-Nilai HP muncul.
-Penjelasan:
-Python menggunakan Name Mangling (__hp → _Hero__hp).
-Namun secara standar OOP, atribut private tidak boleh diakses langsung.
-
-2️⃣ Setter Tanpa Validasi
-
-Jika setter hanya:
-self.__hp = nilai_baru
-Lalu dipanggil:
-hero1.set_hp(-100)
-Hasil:
-HP menjadi -100.
-
-📌 Kesimpulan:
-Setter penting untuk menjaga integritas data agar:
-Tidak negatif
-Tidak curang
-
-Tetap logis dalam game
-
-🔹 Analisis 5 – Abstraction & Interface
-1️⃣ Melanggar Kontrak
-
-Jika method serang() di Hero dihapus:
-Error:
-
-TypeError: Can't instantiate abstract class Hero with abstract method serang
-Artinya:
-Hero belum memenuhi kontrak dari GameUnit, jadi tidak boleh jadi objek.
-
-📌 Konsekuensi:
-
-Class tidak bisa digunakan
-Program error
-
-2️⃣ GameUnit Jadi Objek
-Jika:
-unit = GameUnit()
-
-
-Error:
-
-TypeError: Can't instantiate abstract class GameUnit...
-📌 Penjelasan:
-GameUnit adalah blueprint, bukan objek nyata.
-
-📌 Gunanya:
-
-Menyeragamkan struktur class
-Memaksa semua unit punya method wajib
-
-🔹 Analisis 6 – Polymorphism
-1️⃣ Tambah Class Healer
-Healer ditambahkan ke pasukan tanpa mengubah loop.
-
-Hasil:
-Program tetap berjalan lancar.
-
-📌 Kesimpulan:
-Polimorfisme memudahkan pengembangan game:
-Tambah karakter baru tanpa ubah sistem lama
-Kode fleksibel & scalable
-
-2️⃣ Ubah serang → tembak_panah di Archer
-
-Hasil:
-Program error:
-AttributeError: 'Archer' object has no attribute 'serang'
-📌 Penjelasan:
-Dalam Polimorfisme, semua child class harus punya nama method yang sama dengan parent.
-
-output analisis 3-6 !
-<img width="1920" height="1008" alt="Screenshot 2026-02-04 091351" src="https://github.com/user-attachments/assets/f0487466-1912-4aec-9d6d-43b11012bfcf" />
+```bash
+python techmaster.py
